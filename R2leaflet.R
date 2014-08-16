@@ -12,6 +12,10 @@
 #  robert.grant@sgul.kingston.ac.uk              #
 ##################################################
 
+# 15/08/2014
+# - ajout ligne 42: contrôle du zoom
+# - correction ligne 64: le zoom était codé en dur à cause d'une erreur de syntaxe. Fonctionne sp.
+
 double.escape<-function(textvector) {
 	text.out<-gsub('"','\"',textvector)
 	text.out<-gsub("'","\\\\'",text.out)
@@ -36,6 +40,9 @@ R2leaflet<-function(lat,long,label,
 	if (popup==TRUE & length(label)>1) { 
 		popup<-rep(TRUE,length(label))
 	}
+        # correction du zoom
+        if(map.zoom > 18){map.zoom = 18}
+        
 	head.open<-"<head>"
 	head.comment<-"<!-- The links in the header bring in the leaflet styles from CSS and the JavaScript program behind it all. -->"
 	head.css<-paste("<link rel=\"stylesheet\" href=\"",leafletcss,"\" />",sep="")
@@ -54,11 +61,7 @@ R2leaflet<-function(lat,long,label,
 	                map.height,
 	                "px;\"><script type=\"text/javascript\">", sep="")
 	body.comment2<-"<!-- Then we get into the JavaScript, using the leaflet function L.map to set the center and zooming -->"
-	div.view<-paste("var map = L.map(\'map\').setView([",
-	                map.lat,
-	                ",",
-	                map.long,
-	                "], 6);", sep="")
+	div.view<-paste("var map = L.map(\'map\').setView([",map.lat, ",",map.long, "],", map.zoom, ");", sep="")
 	body.comment3<-"<!-- The images are obtained online using L.tileLayer... -->"
 	if (map.source=="OSM") {
 		div.tile<-"L.tileLayer(\'http://{s}.tile.osm.org/{z}/{x}/{y}.png\', { attribution: \'&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors\' }).addTo(map);"
@@ -90,4 +93,3 @@ R2leaflet<-function(lat,long,label,
 	writeLines(leaflet.text,conn)
 	close(conn)
 }
-

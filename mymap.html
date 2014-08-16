@@ -1,0 +1,21 @@
+<head>
+<!-- The links in the header bring in the leaflet styles from CSS and the JavaScript program behind it all. -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script src="https://raw.github.com/shramov/leaflet-plugins/master/layer/tile/Google.js"></script>
+ 
+</head>
+<body>
+<!-- First we create a div (section of the page) called map -->
+<div id="map" style="height:780px;"><script type="text/javascript">
+<!-- Then we get into the JavaScript, using the leaflet function L.map to set the center and zooming -->
+var map = L.map('map').setView([48.583148,7.747882],14);
+<!-- The images are obtained online using L.tileLayer... -->
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+<!-- ...and then markers are added using L.marker, with pop-up captions using .bindPopup -->
+L.marker([48.575694743752,7.74370622704737]).addTo(map).bindPopup('<b>NHC</b> <br> Maladies infectieuses');
+L.marker([48.5845633296929,7.70498567828326]).addTo(map).bindPopup('<b>Pole Logistique</b> <br> Décontamination');
+L.marker([48.589020221706,7.70340853938251]).addTo(map).bindPopup('<b>Sortie 3</b>');
+<!-- Finally, the tags for JavaScript, the map div, and the body of the webpage are closed off -->
+</script></div>
+</body>
