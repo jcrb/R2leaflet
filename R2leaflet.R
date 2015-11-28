@@ -60,8 +60,10 @@ R2leaflet<-function(lat,long,label,
 	div.open<-paste("<div id=\"map\" style=\"height:",
 	                map.height,
 	                "px;\"><script type=\"text/javascript\">", sep="")
+        
 	body.comment2<-"<!-- Then we get into the JavaScript, using the leaflet function L.map to set the center and zooming -->"
 	div.view<-paste("var map = L.map(\'map\').setView([",map.lat, ",",map.long, "],", map.zoom, ");", sep="")
+        
 	body.comment3<-"<!-- The images are obtained online using L.tileLayer... -->"
 	if (map.source=="OSM") {
 		div.tile<-"L.tileLayer(\'http://{s}.tile.osm.org/{z}/{x}/{y}.png\', { attribution: \'&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors\' }).addTo(map);"
@@ -72,6 +74,7 @@ R2leaflet<-function(lat,long,label,
 				"map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl}, {}));")
 	}
 	bindpopup<-ifelse(popup,paste(".bindPopup(",double.escape(label),")",sep=""),rep(" ",length(label)))
+        
 	body.comment4<-"<!-- ...and then markers are added using L.marker, with pop-up captions using .bindPopup -->"
 	div.mark<-paste("L.marker([",
 	                lat,
