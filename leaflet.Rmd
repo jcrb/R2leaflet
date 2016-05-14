@@ -17,7 +17,7 @@ lat<-c(48.575694743752, 48.58456332969292,48.58902022170603)
 long<-c(7.743706227047369, 7.704985678283265, 7.703408539382508)
 label<-c("<b>NHC</b> <br> Maladies infectieuses","<b>Pole Logistique</b> <br> Décontamination","<b>Sortie 3</b>")
 
-R2leaflet(lat=lat,long=long,label=label,filename="mymap.html", map.height=780, map.lat=48.5831480, map.long=7.747882000000004,map.zoom=14)
+R2leaflet(lat=lat,long=long,label=label,filename="mymap.html", map.height=780, map.lat=48.5831480, map.long=7.747882000000004, map.zoom=12)
 
 ```
 
